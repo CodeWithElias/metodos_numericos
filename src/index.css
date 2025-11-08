@@ -162,25 +162,25 @@ h1, h2, h3, h4, h5, h6 {
   gap: 1.5rem;
 }
 
-@media (min-width: 992px) {
-  .app-main {
-    grid-template-columns: 1fr 2fr; /* 1/3 controles, 2/3 resultados */
-  }
-}
-
 /* 6. Estilos del Formulario */
 .input-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* --- CAMBIO AQUÍ --- */
+  /* Por defecto 1 columna para móviles */
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
 }
+
 .form-group.span-2 {
+  /* Esto se aplica cuando el formulario tiene 2 columnas */
   grid-column: 1 / -1;
 }
+
 .input-form label {
   font-weight: 500;
   margin-bottom: 0.35rem;
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .input-form button {
-  grid-column: 1 / -1;
+  grid-column: 1 / -1; /* Ocupa todo el ancho en 1 o 2 columnas */
   padding: 0.85rem;
   background-color: var(--color-primary);
   color: white;
@@ -229,6 +229,9 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
   border: 1px solid #d1fae5;
+  /* --- MEJORA RESPONSIVA --- */
+  flex-wrap: wrap; /* Permite que se apilen en pantallas pequeñas */
+  gap: 0.5rem;
 }
 .root-result strong {
   font-size: 1.4rem;
@@ -279,10 +282,7 @@ tbody tr:nth-child(even) {
   border-top: 2px solid var(--color-border);
 }
 
-/* --- AÑADE ESTO AL FINAL DE TU 'src/index.css' --- */
-
 /* 9. Estilos de la Portada (DashboardView) */
-
 .dashboard-view {
   display: flex;
   align-items: center;
@@ -368,10 +368,25 @@ tbody tr:nth-child(even) {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsividad para la portada */
+/* 10. --- LÓGICA RESPONSIVA (Media Queries) --- */
+
+/* Para pantallas de 576px de ancho o más (móviles grandes / tabletas) */
+@media (min-width: 576px) {
+  /* --- CAMBIO AQUÍ --- */
+  /* Pasa el formulario a 2 columnas */
+  .input-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* Para pantallas de 768px de ancho o menos (tabletas y móviles) */
 @media (max-width: 768px) {
   .dashboard-content {
     padding: 2rem;
+    /* Quitamos el backdrop-filter en móviles por rendimiento */
+    backdrop-filter: none;
+    background-color: rgba(0, 0, 0, 0.1);
   }
   .team-list {
     grid-template-columns: 1fr;
@@ -379,5 +394,17 @@ tbody tr:nth-child(even) {
   }
   .dashboard-header h1 {
     font-size: 2rem;
+  }
+  
+  /* Ajusta el padding de la página */
+  .view-container, .brent-view-container {
+    padding: 1rem;
+  }
+}
+
+/* Para pantallas de 992px de ancho o más (computadoras) */
+@media (min-width: 900px) {
+  .app-main {
+    grid-template-columns: 1fr 2fr; /* 1/3 controles, 2/3 resultados */
   }
 }

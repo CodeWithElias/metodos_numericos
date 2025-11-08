@@ -1,4 +1,4 @@
-import { ChartData } from 'chart.js';
+import type { ChartData } from 'chart.js';
 
 // Tipo para la función que el usuario ingresa (compilada)
 export type CompiledFunction = (x: number) => number;

@@ -26,7 +26,6 @@ export function solveBrent(
   let c = a; // c es el contrapunto
   let fc = fa;
   let d = b - a; // d se usa para la bisección
-  let e = d;
   let mflag = true; // Flag para usar bisección o interpolación
   
   const iterations: BrentIteration[] = [];
@@ -63,7 +62,6 @@ export function solveBrent(
 
     let fs = f(s);
     d = c;       // Guardar valores anteriores
-    e = d;
     c = b;
     fc = fb;
 

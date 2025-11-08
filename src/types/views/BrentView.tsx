@@ -57,7 +57,7 @@ function BrentView() {
       functionValues.push(fn(x));
     }
 
-    const rootData = root ? [{ x: root.toFixed(2), y: fn(root) }] : [];
+    const rootData = root ? [{ x: root, y: fn(root) }] : [];
 
     setChartData({
       labels,

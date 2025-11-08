@@ -7,33 +7,15 @@ interface FunctionGraphProps {
 }
 
 const options: ChartOptions<'line'> = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Gráfico de la función y la raíz encontrada',
-    },
-  },
+  // ...
   scales: {
-    x: {
-      title: {
-        display: true,
-        text: 'x',
-      },
-    },
+    // ...
     y: {
-      title: {
-        display: true,
-        text: 'f(x)',
-      },
+      // ...
       grid: {
-        drawBorder: false,
-        color: (context: GridLineContext) => {
-          if (context.tick.value === 0) {
-            return 'rgba(0, 0, 0, 0.8)'; // Eje Y=0
+        color: (context) => {
+          if (context.tick?.value === 0) {
+            return 'rgba(0, 0, 0, 0.8)';
           }
           return 'rgba(0, 0, 0, 0.1)';
         },
