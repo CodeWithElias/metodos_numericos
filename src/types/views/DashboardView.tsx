@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../index.css'; // Crearemos este CSS
+import './DashboardView.css'; // Crearemos este CSS
 
 // Ícono de calculadora para el botón
 const CalculatorIcon = () => (
@@ -20,14 +20,15 @@ function DashboardView() {
         <section className="dashboard-team">
           <h3>Proyecto Final: Método de Brent</h3>
           <ul className="team-list">
-            <li>Dayana Vivian Cala Gonzales [cite: 6]</li>
-            <li>Jairo Guerra Tarifa [cite: 7]</li>
-            <li>Luis Fernando Iturralde Casucanqui [cite: 8]</li>
-            <li>Adolfo Mendoza Ribera [cite: 9]</li>
-            <li>Adalid Nicolas Revollo Roman [cite: 10]</li>
+            <li> <strong>Anabel esmeralda león tupa (215169867)</strong></li>
+            <li><strong>Oliver Gutierrez Lucas (220038694)</strong></li>
+            <li><strong>Maria Jimena Rios Cordova (222068566)</strong></li>
+            <li><strong>Luis Fernando Iturralde Cusicanqui (200337939)</strong></li>
+            <li><strong>Esequiel Rios Rengifo (218133359)</strong></li>
+            <li><strong>Elias Puma Claure (220035415)</strong></li>
           </ul>
           <p className="teacher-name">
-            <strong>Docente:</strong> Ing. Luis Antonio Gianella Peredo [cite: 13]
+            <strong>Docente:</strong> Ing. Luis Antonio Gianella Peredo
           </p>
         </section>
 

@@ -1,22 +1,27 @@
-import type { BrentIteration } from "../types";
+// src/components/ResultsTable.tsx
 
+import type { BrentIteration } from '../types';
 
 interface ResultsTableProps {
   root: number | null;
   iterations: BrentIteration[];
-  precision: number;
+  sigFigs: number;
 }
 
-function ResultsTable({ iterations, root, precision }: ResultsTableProps) {
+function ResultsTable({ iterations, root, sigFigs }: ResultsTableProps) {
+  // --- CAMBIO AQUÍ ---
+  // Si no hay iteraciones, simplemente no renderiza nada.
+  // La vista 'BrentView' se encarga del placeholder.
   if (iterations.length === 0) {
-    return <p className="placeholder-text">Ingrese una función y un intervalo para calcular.</p>;
+    return null;
   }
+  // --- FIN DEL CAMBIO ---
 
   return (
     <div className="results-container">
       <div className="root-result">
         <span>Raíz encontrada:</span>
-        <strong>{root ? root.toFixed(precision) : 'N/A'}</strong>
+        <strong>{root ? root.toPrecision(sigFigs) : 'N/A'}</strong>
       </div>
       
       <h3>Detalle de iteraciones:</h3>
@@ -36,11 +41,18 @@ function ResultsTable({ iterations, root, precision }: ResultsTableProps) {
             {iterations.map((iter) => (
               <tr key={iter.i}>
                 <td>{iter.i}</td>
-                <td>{iter.a.toFixed(precision)}</td>
-                <td>{iter.b.toFixed(precision)}</td>
-                <td>{iter.fa.toExponential(4)}</td>
-                <td>{iter.fb.toExponential(4)}</td>
-                <td>{iter.error.toExponential(4)}</td>
+                <td>{iter.a.toPrecision(sigFigs)}</td>
+                <td>{iter.b.toPrecision(sigFigs)}</td>
+                <td>{iter.fa.toPrecision(sigFigs)}</td>
+                <td>{iter.fb.toPrecision(sigFigs)}</td>
+                
+                {/* --- CAMBIO AQUÍ (Iteración 0) --- */}
+                {/* Si es la iteración 0, no muestra error */}
+                <td>
+                  {iter.i === 0 ? "---" : iter.error.toPrecision(sigFigs)}
+                </td>
+                {/* --- FIN DEL CAMBIO --- */}
+
               </tr>
             ))}
           </tbody>

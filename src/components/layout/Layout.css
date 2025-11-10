@@ -1,0 +1,18 @@
+/* --- src/components/layout/Layout.css --- */
+
+.global-layout {
+  /* Ajustado para el nuevo ancho del sidebar */
+  padding-left: 70px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.global-content {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  position: relative;
+  z-index: 1;
+  overflow-x: auto; /* Permite scroll horizontal si es necesario */
+}

@@ -1,11 +1,13 @@
-import type { BrentIteration, BrentResult, CompiledFunction } from "../types";
+// src/logic/brent.ts
 
+import type { BrentResult, BrentIteration, CompiledFunction } from '../types';
 
 export function solveBrent(
   f: CompiledFunction,
   a: number,
   b: number,
-  tolerance: number = 1e-6,
+  tolX: number = 1e-6,
+  tolY: number = 1e-6,
   maxIter: number = 100
 ): BrentResult {
   
@@ -17,51 +19,52 @@ export function solveBrent(
     return { root: null, iterations: [] };
   }
 
-  // Asegurar que 'b' sea la mejor estimación (menor f(x))
   if (Math.abs(fa) < Math.abs(fb)) {
     [a, b] = [b, a];
     [fa, fb] = [fb, fa];
   }
 
-  let c = a; // c es el contrapunto
+  let c = a;
   let fc = fa;
-  let d = b - a; // d se usa para la bisección
-  let mflag = true; // Flag para usar bisección o interpolación
+  let d = b - a;
+  let mflag = true;
   
-  const iterations: BrentIteration[] = [];
+  // --- CAMBIO AQUÍ (Iteración 0) ---
   let iterCount = 0;
+  const iterations: BrentIteration[] = [];
+  // Guardamos el estado inicial como Iteración 0
+  iterations.push({ i: 0, a, b, fa, fb, error: Math.abs(b - a) });
+  // --- FIN DEL CAMBIO ---
 
-  while (iterCount < maxIter && Math.abs(fb) > tolerance && Math.abs(b - a) > tolerance) {
+  while (iterCount < maxIter && Math.abs(fb) > tolY && Math.abs(b - a) > tolX) {
+    
     let s: number;
 
-    // --- Lógica de Interpolación ---
     if (fa !== fc && fb !== fc) {
-      // Interpolación Cuadrática Inversa (IQI)
+      // ... (IQI)
       s = (a * fb * fc) / ((fa - fb) * (fa - fc)) +
           (b * fa * fc) / ((fb - fa) * (fb - fc)) +
           (c * fa * fb) / ((fc - fa) * (fc - fb));
     } else {
-      // Interpolación Secante
+      // ... (Secante)
       s = b - fb * (b - a) / (fb - fa);
     }
 
-    // --- Comprobaciones de Seguridad (El corazón de Brent) ---
     const cond1 = (s < (3 * a + b) / 4 || s > b);
     const cond2 = mflag && (Math.abs(s - b) >= Math.abs(b - c) / 2);
     const cond3 = !mflag && (Math.abs(s - b) >= Math.abs(c - d) / 2);
-    const cond4 = mflag && (Math.abs(b - c) < tolerance);
-    const cond5 = !mflag && (Math.abs(c - d) < tolerance);
+    const cond4 = mflag && (Math.abs(b - c) < tolX);
+    const cond5 = !mflag && (Math.abs(c - d) < tolX);
 
     if (cond1 || cond2 || cond3 || cond4 || cond5) {
-      // Fallback a Bisección
       s = (a + b) / 2;
       mflag = true;
     } else {
       mflag = false;
     }
 
-    let fs = f(s);
-    d = c;       // Guardar valores anteriores
+    const fs = f(s);
+    d = c;
     c = b;
     fc = fb;
 
@@ -73,14 +76,16 @@ export function solveBrent(
       fa = fs;
     }
 
-    // Asegurar que 'b' sigue siendo la mejor estimación
     if (Math.abs(fa) < Math.abs(fb)) {
       [a, b] = [b, a];
       [fa, fb] = [fb, fa];
     }
     
+    // --- CAMBIO AQUÍ (Iteración 0) ---
+    // Incrementamos el contador y lo usamos para la siguiente iteración
     iterCount++;
     iterations.push({ i: iterCount, a, b, fa, fb, error: Math.abs(b - a) });
+    // --- FIN DEL CAMBIO ---
   }
 
   return { root: b, iterations };
