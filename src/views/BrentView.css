@@ -254,7 +254,8 @@
 
 /* Tabla "Presionada" y Animada */
 .table-wrapper {
-  overflow: hidden; /* Oculta scroll-x si es posible */
+  overflow-y: auto; /* Habilita scroll vertical */
+  overflow-x: auto; /* Habilita scroll horizontal si es necesario */
   max-height: 400px;
   border-radius: var(--border-radius);
   /* Sombra "Inset" */
@@ -274,10 +275,12 @@ th, td {
   white-space: nowrap;
 }
 th {
-  background-color: transparent; /* Fondo limpio */
+  background-color: var(--color-bg-primary); /* Fondo sólido para el encabezado */
   font-weight: 600;
   position: sticky;
   top: 0;
+  z-index: 1; /* Asegura que esté por encima del contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para separar */
 }
 th:not(:first-child),
 td:not(:first-child) {

@@ -34,7 +34,7 @@ function ResultsTable({ iterations, root, sigFigs }: ResultsTableProps) {
               <th>b</th>
               <th>f(a)</th>
               <th>f(b)</th>
-              <th>Error (b - a)</th>
+              <th>Error</th>
             </tr>
           </thead>
           <tbody>

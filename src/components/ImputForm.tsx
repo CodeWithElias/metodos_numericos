@@ -8,7 +8,7 @@ interface InputFormProps {
 }
 
 function InputForm({ onSubmit, isLoading }: InputFormProps) {
-  const [func, setFunc] = useState('x^3 - x - 2');
+  const [func, setFunc] = useState('x^3 - x - 3');
   const [a, setA] = useState('1');
   const [b, setB] = useState('2');
   const [tolX, setTolX] = useState('0.00001');

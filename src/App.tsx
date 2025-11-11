@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import DashboardView from './types/views/DashboardView';
-import BrentView from './types/views/BrentView';
+import DashboardView from './views/DashboardView';
+import BrentView from './views/BrentView';
 
 function App() {
   return (

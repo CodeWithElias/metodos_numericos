@@ -4,11 +4,11 @@ import "./BrentView.css"
 
 // Imports de Chart.js
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import type { BrentResult, LineChartData, FormInputs, CompiledFunction } from '..';
-import FunctionGraph from '../../components/FunctionGraph';
-import InputForm from '../../components/ImputForm';
-import ResultsTable from '../../components/ResultsTable';
-import { solveBrent } from '../../logic/brent';
+import type { BrentResult, LineChartData, FormInputs, CompiledFunction } from '../types';
+import FunctionGraph from '../components/FunctionGraph';
+import InputForm from '../components/ImputForm';
+import ResultsTable from '../components/ResultsTable';
+import { solveBrent } from '../logic/brent';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 // Estado unificado
