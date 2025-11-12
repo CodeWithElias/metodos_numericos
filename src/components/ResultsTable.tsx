@@ -3,28 +3,20 @@
 import type { BrentIteration } from '../types';
 
 interface ResultsTableProps {
-  root: number | null;
   iterations: BrentIteration[];
   sigFigs: number;
+  onRowClick: (iteration: BrentIteration) => void; // <-- AÑADIDO
 }
 
-function ResultsTable({ iterations, root, sigFigs }: ResultsTableProps) {
-  // --- CAMBIO AQUÍ ---
-  // Si no hay iteraciones, simplemente no renderiza nada.
-  // La vista 'BrentView' se encarga del placeholder.
+function ResultsTable({ iterations, sigFigs, onRowClick }: ResultsTableProps) {
   if (iterations.length === 0) {
     return null;
   }
-  // --- FIN DEL CAMBIO ---
 
   return (
     <div className="results-container">
-      <div className="root-result">
-        <span>Raíz encontrada:</span>
-        <strong>{root ? root.toPrecision(sigFigs) : 'N/A'}</strong>
-      </div>
       
-      <h3>Detalle de iteraciones:</h3>
+      <h3>Detalle de iteraciones: (Haz clic en una fila para ver los pasos)</h3>
       <div className="table-wrapper">
         <table>
           <thead>
@@ -35,24 +27,25 @@ function ResultsTable({ iterations, root, sigFigs }: ResultsTableProps) {
               <th>f(a)</th>
               <th>f(b)</th>
               <th>Error</th>
+              <th>Método</th>
             </tr>
           </thead>
           <tbody>
             {iterations.map((iter) => (
-              <tr key={iter.i}>
+              <tr 
+                key={iter.i} 
+                className={iter.i > 0 ? 'clickable-row' : ''} // Clase solo para iter > 0
+                onClick={() => onRowClick(iter)} 
+              >
                 <td>{iter.i}</td>
                 <td>{iter.a.toPrecision(sigFigs)}</td>
                 <td>{iter.b.toPrecision(sigFigs)}</td>
                 <td>{iter.fa.toPrecision(sigFigs)}</td>
                 <td>{iter.fb.toPrecision(sigFigs)}</td>
-                
-                {/* --- CAMBIO AQUÍ (Iteración 0) --- */}
-                {/* Si es la iteración 0, no muestra error */}
                 <td>
                   {iter.i === 0 ? "---" : iter.error.toPrecision(sigFigs)}
                 </td>
-                {/* --- FIN DEL CAMBIO --- */}
-
+                <td>{iter.method}</td>
               </tr>
             ))}
           </tbody>

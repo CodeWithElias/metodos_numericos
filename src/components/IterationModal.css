@@ -1,0 +1,467 @@
+/* --- src/components/IterationModal.css (Modo Claro + KaTeX) --- */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  color: var(--color-text);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  width: 95%;
+  max-width: 800px;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.3),
+    0 10px 20px -5px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s backwards;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 3px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+.modal-header h2 {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.modal-header h2::before {
+  content: '🔍';
+  font-size: 1.5rem;
+}
+.modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: none;
+  color: #6b7280;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.modal-close:hover {
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  transform: scale(1.05);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+.modal-body {
+  padding-top: 0.5rem;
+}
+.modal-section {
+  margin-top: 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  padding-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(248, 250, 252, 0.5) 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.modal-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 0 4px 4px 0;
+}
+.modal-section:last-child {
+  border-bottom: none;
+}
+
+.modal-body h3 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.25px;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.modal-body h3::before {
+  content: '📋';
+  font-size: 1.1rem;
+}
+
+/* --- ESTILOS KaTeX --- */
+.katex {
+  font-size: 1.15em !important;
+  text-align: center;
+  width: 100%;
+  color: #1e293b;
+}
+.katex .base {
+  color: inherit;
+}
+.katex .mord {
+  color: #1e40af;
+}
+.katex .mbin,
+.katex .mrel {
+  color: #64748b;
+}
+
+/* Estilo para las cajas de fórmula */
+.formula-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+.formula-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 12px 12px 0 0;
+}
+.formula-box h4 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.formula-box h4::before {
+  content: '⚡';
+  font-size: 1rem;
+}
+.formula-box code {
+  display: block;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e40af;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+.formula-box .formula-math {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.formula-box .formula-calc {
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+/* Estilos para la Decisión Final */
+.decision-box.success h4 { color: var(--color-success); }
+.decision-box.success { border-color: var(--color-success); }
+.decision-box h4 { color: var(--color-danger); }
+.decision-box { border-color: var(--color-danger); }
+
+.formula-result {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e40af;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  box-shadow:
+    0 2px 8px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+.formula-result::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+.formula-result.final {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  color: #166534;
+  border-color: rgba(34, 197, 94, 0.2);
+  box-shadow:
+    0 2px 8px rgba(34, 197, 94, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.formula-result.final::before {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+.formula-result strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+.formula-result strong::before {
+  content: '🎯';
+  font-size: 1.25rem;
+}
+.formula-result.final strong::before {
+  content: '✅';
+}
+
+/* Estado de la Iteración */
+.state-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.state-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  padding: 0.75rem 0;
+  transition: all 0.2s ease;
+}
+.state-list li:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(37, 99, 235, 0.02) 100%);
+  border-radius: 6px;
+  padding-left: 0.5rem;
+  margin: 0 -0.5rem;
+}
+.state-list li .katex {
+  font-size: 1em !important;
+  color: #1e40af;
+}
+.state-list li span {
+  font-weight: 700;
+  color: #1e293b;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* Razón de la Decisión */
+.reason-text {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+.reason-text::before {
+  content: '💡';
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+.reason-text .pass {
+  color: #10b981;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.reason-text .fail {
+  color: #ef4444;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* --- NUEVOS ESTILOS: PANEL DE DECISIÓN --- */
+.decision-panel {
+  list-style: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+.decision-panel li {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.decision-panel li:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.decision-panel .check-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+.decision-panel .check-icon {
+  font-weight: 700;
+  font-size: 1.25rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.decision-panel .check-name {
+  font-weight: 700;
+  color: #1e293b;
+  flex: 1;
+}
+.decision-panel .check-details {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-around;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+}
+.decision-panel .check-details .katex {
+  font-size: 1em !important;
+  color: #1e40af;
+}
+.decision-panel .check-reason {
+  font-size: 0.9rem;
+  padding: 1rem 1.25rem;
+  font-style: italic;
+  color: #64748b;
+  margin: 0;
+  background: linear-gradient(135deg, rgba(100, 116, 139, 0.02) 0%, rgba(71, 85, 105, 0.02) 100%);
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+/* Colores de Éxito/Fallo */
+.decision-panel li.pass {
+  border-left: 4px solid #10b981;
+}
+.decision-panel li.pass .check-header {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+}
+.decision-panel li.pass .check-icon {
+  color: #10b981;
+}
+.decision-panel li.fail {
+  border-left: 4px solid #ef4444;
+}
+.decision-panel li.fail .check-header {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%);
+}
+.decision-panel li.fail .check-icon {
+  color: #ef4444;
+}
