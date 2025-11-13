@@ -85,6 +85,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={func}
           onChange={(e) => setFunc(e.target.value)}
           className={errors.func ? 'error' : ''}
+          placeholder="Ej: x^3 - x - 3"
         />
         {errors.func && <span className="error-message">{errors.func}</span>}
       </div>
@@ -97,6 +98,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={a}
           onChange={(e) => setA(e.target.value)}
           className={errors.a ? 'error' : ''}
+          placeholder="Ej: 1"
         />
         {errors.a && <span className="error-message">{errors.a}</span>}
       </div>
@@ -108,6 +110,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={b}
           onChange={(e) => setB(e.target.value)}
           className={errors.b ? 'error' : ''}
+          placeholder="Ej: 2"
         />
         {errors.b && <span className="error-message">{errors.b}</span>}
       </div>
@@ -119,6 +122,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={tolX}
           onChange={(e) => setTolX(e.target.value)}
           className={errors.tolX ? 'error' : ''}
+          placeholder="Ej: 0.00001"
         />
         {errors.tolX && <span className="error-message">{errors.tolX}</span>}
       </div>
@@ -131,6 +135,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={tolY}
           onChange={(e) => setTolY(e.target.value)}
           className={errors.tolY ? 'error' : ''}
+          placeholder="Ej: 0.00001"
         />
         {errors.tolY && <span className="error-message">{errors.tolY}</span>}
       </div>
@@ -145,6 +150,7 @@ function InputForm({ onSubmit, isLoading }: InputFormProps) {
           value={sigFigs}
           onChange={(e) => setSigFigs(e.target.value)}
           className={errors.sigFigs ? 'error' : ''}
+          placeholder="Ej: 8"
         />
         {errors.sigFigs && <span className="error-message">{errors.sigFigs}</span>}
       </div>

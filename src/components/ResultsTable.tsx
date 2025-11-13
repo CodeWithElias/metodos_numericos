@@ -15,21 +15,10 @@ function ResultsTable({ iterations, sigFigs, onRowClick }: ResultsTableProps) {
   }
 
   return (
-    <div className="card results-table-card" style={{
-      border: '2px solid rgba(59, 130, 246, 0.2)',
-      borderRadius: '20px',
-      boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.03)',
-      padding: '1.5rem',
-      margin: '1.5rem'
-    }}>
+    <div className="card results-table-card">
       <h2>Tabla de Iteraciones</h2>
       <div className="results-container">
-
-        <div className="table-wrapper" style={{
-          borderRadius: '16px',
-          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.03)',
-          border: '2px solid rgba(59, 130, 246, 0.2)'
-        }}>
+        <div className="table-wrapper">
           <table>
             <thead>
               <tr>

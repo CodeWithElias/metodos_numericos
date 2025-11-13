@@ -103,15 +103,15 @@
 
 /* Cards modernas con gradientes sutiles */
 .app-main .card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 2px solid rgba(59, 130, 246, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(241, 245, 249, 0.95) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.3);
   border-radius: 20px;
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 6px 20px rgba(0, 0, 0, 0.1),
-    0 3px 10px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(59, 130, 246, 0.08),
+    0 6px 20px rgba(59, 130, 246, 0.06),
+    0 3px 10px rgba(59, 130, 246, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    inset 0 -1px 0 rgba(59, 130, 246, 0.02);
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: popIn 0.5s ease-out 0.1s backwards;
@@ -121,25 +121,17 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-.app-main .card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-  border-radius: 16px 16px 0 0;
-}
+/* Eliminado el borde superior coloreado */
 
 .app-main .card:hover {
   transform: translateY(-8px);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.2),
-    0 10px 30px rgba(0, 0, 0, 0.15),
-    0 5px 15px rgba(0, 0, 0, 0.1),
+    0 20px 60px rgba(59, 130, 246, 0.15),
+    0 10px 30px rgba(59, 130, 246, 0.12),
+    0 5px 15px rgba(59, 130, 246, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.98),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+    inset 0 -1px 0 rgba(59, 130, 246, 0.03);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .app-main .card h2 {
@@ -189,16 +181,7 @@
   position: relative;
 }
 
-.input-form label::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 30px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-  border-radius: 1px;
-}
+/* Eliminado el subrayado de los labels */
 
 /* Inputs modernos con mejor UX */
 .input-form input {
@@ -210,11 +193,11 @@
   font-family: var(--font-sans);
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(241, 245, 249, 0.9) 100%);
   box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 2px 4px rgba(59, 130, 246, 0.04),
+    0 1px 2px rgba(59, 130, 246, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   color: var(--color-text-primary);
   box-sizing: border-box;
   backdrop-filter: blur(6px);
@@ -223,9 +206,9 @@
 
 .input-form input:hover {
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 4px 8px rgba(59, 130, 246, 0.08),
+    0 2px 4px rgba(59, 130, 246, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
   transform: translateY(-1px);
 }
 
@@ -233,10 +216,10 @@
   outline: none;
   box-shadow:
     0 0 0 3px rgba(59, 130, 246, 0.15),
-    0 6px 16px rgba(0, 0, 0, 0.12),
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  background: #ffffff;
+    0 6px 16px rgba(59, 130, 246, 0.08),
+    0 2px 4px rgba(59, 130, 246, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   transform: translateY(-1px);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -245,8 +228,8 @@
 .input-form input.error {
   box-shadow:
     0 0 0 3px rgba(239, 68, 68, 0.15),
-    0 4px 8px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.06);
+    0 4px 8px rgba(239, 68, 68, 0.08),
+    0 2px 4px rgba(239, 68, 68, 0.06);
   transform: translateY(-1px);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -324,14 +307,17 @@
 .error-message {
   margin-top: 1rem;
   padding: 1rem 1.25rem;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  background: linear-gradient(135deg, rgba(254, 242, 242, 0.9) 0%, rgba(254, 226, 226, 0.85) 50%, rgba(254, 202, 202, 0.9) 100%);
   color: var(--color-danger);
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: 12px;
   font-weight: 500;
   text-align: center;
   animation: popIn 0.4s ease-out;
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+  box-shadow:
+    0 4px 12px rgba(239, 68, 68, 0.08),
+    0 2px 6px rgba(239, 68, 68, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   position: relative;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -346,12 +332,15 @@
   list-style: none;
   padding: 0.5rem;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  border: 1px solid rgba(14, 165, 233, 0.2);
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.9) 0%, rgba(224, 242, 254, 0.85) 50%, rgba(186, 230, 253, 0.9) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.3);
   border-radius: 12px;
   font-size: 1rem;
   animation: fadeIn 0.5s ease-out 0.4s backwards;
-  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
+  box-shadow:
+    0 4px 12px rgba(14, 165, 233, 0.08),
+    0 2px 6px rgba(14, 165, 233, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -396,17 +385,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.85) 50%, rgba(187, 247, 208, 0.9) 100%);
   color: #166534;
   padding: 0.75rem 1.25rem;
   border-radius: 16px;
   margin-bottom: 0.75rem;
-  border: 2px solid #bbf7d0;
+  border: 2px solid rgba(34, 197, 94, 0.3);
   flex-wrap: wrap;
   gap: 0.75rem;
   box-shadow:
-    0 4px 12px rgba(34, 197, 94, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 6px 16px rgba(34, 197, 94, 0.08),
+    0 3px 8px rgba(34, 197, 94, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(8px);
@@ -438,9 +428,12 @@
   text-align: center;
   padding: 1.5rem 1rem;
   font-size: 1.1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(241, 245, 249, 0.9) 100%);
   border-radius: 12px;
-  border: 2px dashed var(--color-gray-200);
+  border: 2px dashed rgba(59, 130, 246, 0.2);
+  box-shadow:
+    0 2px 8px rgba(59, 130, 246, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -452,11 +445,11 @@
   max-height: 600px;
   border-radius: 12px;
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 4px 6px -1px rgba(59, 130, 246, 0.06),
+    0 2px 4px -1px rgba(59, 130, 246, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.1);
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -465,12 +458,12 @@
 .results-table-card .table-wrapper {
   border-radius: 16px;
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 6px 20px rgba(0, 0, 0, 0.1),
-    0 3px 10px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(59, 130, 246, 0.08),
+    0 6px 20px rgba(59, 130, 246, 0.06),
+    0 3px 10px rgba(59, 130, 246, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
-  border: 2px solid rgba(59, 130, 246, 0.2);
+    inset 0 -1px 0 rgba(59, 130, 246, 0.02);
+  border: 2px solid rgba(59, 130, 246, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -530,15 +523,17 @@ tbody tr {
 }
 
 tbody tr:nth-child(even) {
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
 
 tbody tr.clickable-row:hover {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: linear-gradient(135deg, rgba(239, 246, 255, 0.9) 0%, rgba(219, 234, 254, 0.85) 50%, rgba(186, 230, 253, 0.9) 100%);
   transform: scale(1.01);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+  box-shadow:
+    0 4px 12px rgba(59, 130, 246, 0.08),
+    0 2px 6px rgba(59, 130, 246, 0.06);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -566,15 +561,15 @@ tbody tr:nth-child(10) { animation-delay: 0.5s; }
 .graph-container {
   margin-top: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 2px solid rgba(59, 130, 246, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(241, 245, 249, 0.95) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
   border-radius: 20px;
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 6px 20px rgba(0, 0, 0, 0.1),
-    0 3px 10px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(16, 185, 129, 0.08),
+    0 6px 20px rgba(16, 185, 129, 0.06),
+    0 3px 10px rgba(16, 185, 129, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    inset 0 -1px 0 rgba(16, 185, 129, 0.02);
   animation: popIn 0.5s ease-out 0.5s backwards;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -583,30 +578,75 @@ tbody tr:nth-child(10) { animation-delay: 0.5s; }
   -webkit-backdrop-filter: blur(10px);
 }
 
-.graph-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #10b981, #34d399);
-  border-radius: 16px 16px 0 0;
-}
+/* Eliminado el borde superior coloreado */
 
 .graph-container:hover {
   transform: translateY(-8px);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.2),
-    0 10px 30px rgba(0, 0, 0, 0.15),
-    0 5px 15px rgba(0, 0, 0, 0.1),
+    0 20px 60px rgba(16, 185, 129, 0.15),
+    0 10px 30px rgba(16, 185, 129, 0.12),
+    0 5px 15px rgba(16, 185, 129, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.98),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+    inset 0 -1px 0 rgba(16, 185, 129, 0.03);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 /* --- 6. RESPONSIVIDAD MODERNA --- */
 
-@media (min-width: 640px) {
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .brent-view-container {
+    padding: 0.5rem;
+  }
+
+  .app-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-header p {
+    font-size: 1rem;
+  }
+
+  .app-main {
+    gap: 1rem;
+  }
+
+  .app-main .card {
+    padding: 1rem;
+  }
+
+  .input-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group.span-2 {
+    grid-column: 1 / -1;
+  }
+
+  .results-summary {
+    font-size: 0.9rem;
+  }
+
+  .root-result {
+    font-size: 1.1rem;
+  }
+
+  .table-wrapper {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
   .brent-view-container {
     padding: 1rem;
   }
@@ -621,20 +661,35 @@ tbody tr:nth-child(10) { animation-delay: 0.5s; }
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 641px) and (max-width: 1024px) {
   .brent-view-container {
     padding: 1.5rem;
   }
 
+  .input-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .form-group.span-2 {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brent-view-container {
+    padding: 2.5rem;
+  }
+
   /* Layout de dos columnas */
   .app-main {
-    grid-template-columns: 380px 1fr;
-    gap: 2rem;
+    grid-template-columns: 420px 1fr;
+    gap: 2.5rem;
   }
 
   .input-form {
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .form-group.span-2 {
@@ -660,8 +715,8 @@ tbody tr:nth-child(10) { animation-delay: 0.5s; }
   }
 
   .app-main {
-    grid-template-columns: 420px 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 480px 1fr;
+    gap: 3rem;
   }
 }
 

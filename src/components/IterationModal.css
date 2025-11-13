@@ -13,6 +13,7 @@
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease-out;
+  padding: 1rem;
 }
 
 .modal-content {
@@ -20,9 +21,9 @@
   color: var(--color-text);
   border-radius: 16px;
   padding: 1rem 1.5rem;
-  width: 95%;
+  width: 100%;
   max-width: 800px;
-  max-height: 95vh;
+  max-height: 90vh;
   overflow-y: auto;
   box-shadow:
     0 20px 40px -10px rgba(0, 0, 0, 0.3),
@@ -33,6 +34,89 @@
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 2rem 1rem; /* Gran espacio arriba/abajo, pequeño a los lados */
+  }
+
+  .modal-content {
+    padding: 1rem;
+    max-height: 80vh; /* Dejar espacio arriba y abajo */
+    border-radius: 12px;
+    font-size: 0.65rem; /* Reducido ~3px más */
+  }
+
+  .modal-header h2 {
+    font-size: 0.9rem; /* Reducido ~3px más */
+  }
+
+  .modal-body h3 {
+    font-size: 0.6rem; /* Reducido ~3px más */
+  }
+
+  .state-list {
+    font-size: 0.6rem; /* Reducido ~3px más */
+  }
+
+  .decision-panel {
+    font-size: 0.55rem; /* Reducido ~3px más */
+  }
+
+  .formula-box h4 {
+    font-size: 0.8rem; /* Reducido ~3px más */
+  }
+
+  .formula-result {
+    font-size: 0.8rem; /* Reducido ~3px más */
+  }
+
+  .reason-text {
+    font-size: 0.75rem; /* Reducido ~3px más */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 1.5rem 0.75rem; /* Espacio moderado arriba/abajo, pequeño a los lados */
+  }
+
+  .modal-content {
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.6rem; /* Reducido ~3px más */
+    max-height: 85vh; /* Un poco más alto en móviles pequeños */
+  }
+
+  .modal-header h2 {
+    font-size: 0.8rem; /* Reducido ~3px más */
+  }
+
+  .modal-body h3 {
+    font-size: 0.55rem; /* Reducido ~3px más */
+  }
+
+  .state-list {
+    font-size: 0.55rem; /* Reducido ~3px más */
+  }
+
+  .decision-panel {
+    font-size: 0.5rem; /* Reducido ~3px más */
+  }
+
+  .formula-box h4 {
+    font-size: 0.75rem; /* Reducido ~3px más */
+  }
+
+  .formula-result {
+    font-size: 0.75rem; /* Reducido ~3px más */
+  }
+
+  .reason-text {
+    font-size: 0.7rem; /* Reducido ~3px más */
+  }
 }
 .modal-content::-webkit-scrollbar {
   width: 6px;
@@ -157,6 +241,19 @@
   text-align: center;
   width: 100%;
   color: #1e293b;
+}
+
+/* Responsive para KaTeX */
+@media (max-width: 768px) {
+  .katex {
+    font-size: 1em !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .katex {
+    font-size: 0.9em !important;
+  }
 }
 .katex .base {
   color: inherit;

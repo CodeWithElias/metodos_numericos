@@ -16,3 +16,15 @@
   z-index: 1;
   overflow-x: auto; /* Permite scroll horizontal si es necesario */
 }
+
+/* Responsive: ocultar sidebar en móviles */
+@media (max-width: 768px) {
+  .global-layout {
+    padding-left: 0;
+  }
+
+  .global-content {
+    padding-left: 0;
+    padding-top: 5rem; /* Espacio para el botón de menú */
+  }
+}
