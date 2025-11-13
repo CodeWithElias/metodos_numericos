@@ -46,7 +46,7 @@ export interface IterationDetails {
   };
   
   // Decisión final
-  finalMethod: 'IQI' | 'Secante' | 'Bisection';
+  finalMethod: 'IQI' | 'Secante' | 'Bisección';
   s_final: number;
   reason: string;
 }

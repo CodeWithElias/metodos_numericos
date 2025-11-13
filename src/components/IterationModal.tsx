@@ -133,17 +133,14 @@ const DecisionPanel: React.FC<{ d: IterationDetails, s: number }> = ({ d, s }) =
     </ul>
   );
 };
-// --- FIN DEL NUEVO COMPONENTE ---
 
-
-// --- COMPONENTE PRINCIPAL DEL MODAL (ACTUALIZADO) ---
 const IterationModal: React.FC<ModalProps> = ({ iteration, onClose, sigFigs }) => {
   if (!iteration || !iteration.details) {
     return null;
   }
 
   const { details } = iteration;
-  const useBisection = details.finalMethod === "Bisection";
+  const useBisection = details.finalMethod === "Bisección";
 
   return (
     <div className="modal-overlay" onClick={onClose}>

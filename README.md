@@ -202,6 +202,88 @@ El método de Brent es un algoritmo híbrido que combina:
 - **Rapidez**: Como los métodos de interpolación
 - **Robustez**: Maneja casos difíciles donde otros métodos fallan
 
+### 🔄 **Lógica de Decisión del Método de Brent**
+
+El algoritmo elige dinámicamente qué método usar en cada iteración basándose en criterios de seguridad y eficiencia:
+
+#### **📋 Jerarquía de Métodos (del más rápido al más seguro):**
+
+1. **Interpolación Cuadrática Inversa (IQI)** - Primer intento
+2. **Método de la Secante** - Si IQI no es posible
+3. **Método de Bisección** - Si la interpolación es "peligrosa"
+
+#### **🎯 Proceso de Decisión en Cada Iteración:**
+
+```
+¿Hay 3 puntos válidos (a,b,c con f(a)≠f(b)≠f(c))?
+├── SÍ → Intentar IQI
+└── NO → Usar Secante
+
+¿La interpolación es "segura"?
+├── SÍ → Usar interpolación (IQI o Secante)
+└── NO → Forzar Bisección
+```
+
+### 📊 **Criterios de Seguridad Detallados**
+
+El algoritmo evalúa **5 condiciones** para determinar si una interpolación es segura:
+
+#### **Condición 1: Intervalo Seguro**
+```
+¿El punto interpolado s está dentro del intervalo [p, b]?
+```
+- `p = (3a + b)/4` (punto seguro)
+- Si `s` está fuera de `[min(p,b), max(p,b)]`, se rechaza
+
+#### **Condición 2: Magnitud de Interpolación (mflag = true)**
+```
+¿|s - b| ≥ |m_seguridad|?
+```
+- `m_seguridad = (c - b)/2`
+- Si la interpolación es muy grande, se rechaza
+
+#### **Condición 3: Magnitud de Interpolación (mflag = false)**
+```
+¿|s - b| ≥ |e/2|?
+```
+- `e` es el valor anterior de la distancia entre puntos
+- Control adicional para interpolaciones grandes
+
+#### **Condición 4: Convergencia Lenta (mflag = true)**
+```
+¿|m_seguridad| ≤ tolerancia_actual?
+```
+- Si el intervalo está colapsando lentamente, fuerza bisección
+
+#### **Condición 5: Convergencia Lenta (mflag = false)**
+```
+¿|e| ≤ tolerancia_actual?
+```
+- Similar a 4, pero con el valor anterior de e
+
+### 🎪 **Ejemplo Práctico de Decisión**
+
+**Iteración 5:**
+- Puntos: a=1.2, b=1.5, c=1.3
+- f(a)=0.8, f(b)=-0.2, f(c)=0.5
+- IQI calcula s=1.42
+- **Condición 1**: s=1.42 está en [1.35, 1.5] ✓
+- **Condición 2**: |1.42-1.5| = 0.08 < |m_seg| ✓
+- → **Resultado**: Usa IQI (convergencia rápida)
+
+**Iteración 12:**
+- Puntos muy cercanos, intervalo colapsando
+- IQI propone s fuera del intervalo seguro
+- **Condición 1**: s está fuera del rango ✗
+- → **Resultado**: Fuerza Bisección (convergencia segura)
+
+### 🏆 **Ventajas de Esta Lógica**
+
+- **Eficiencia**: Prefiere métodos rápidos cuando son seguros
+- **Robustez**: Siempre converge (gracias a bisección como respaldo)
+- **Adaptativo**: Se ajusta automáticamente a la función
+- **Predecible**: Comportamiento determinístico basado en condiciones claras
+
 ### Implementación Técnica
 ```typescript
 function solveBrent(

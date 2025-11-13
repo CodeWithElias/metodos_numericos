@@ -27,7 +27,7 @@ function ResultsTable({ iterations, sigFigs, onRowClick }: ResultsTableProps) {
                 <th>b</th>
                 <th>f(a)</th>
                 <th>f(b)</th>
-                <th>Error (b - a)</th>
+                <th>Error</th>
                 <th>Método</th>
               </tr>
             </thead>
