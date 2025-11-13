@@ -2,6 +2,26 @@
 
 ## 📋 Descripción del Proyecto
 
+## 📖 Menú de Navegación
+
+- [📋 Descripción del Proyecto](#-descripción-del-proyecto)
+- [🎯 Características Principales](#-características-principales)
+- [🛠️ Tecnologías Utilizadas](#️-tecnologías-utilizadas)
+- [📦 Instalación y Configuración](#-instalación-y-configuración)
+- [🚀 Uso de la Aplicación](#-uso-de-la-aplicación)
+- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
+- [🔬 Algoritmo del Método de Brent](#-algoritmo-del-método-de-brent)
+- [👥 Equipo de Desarrollo](#-equipo-de-desarrollo)
+- [🤝 Contribución](#-contribución)
+- [📄 Licencia](#-licencia)
+- [📞 Soporte](#-soporte)
+- [🎉 Estado del Proyecto](#-estado-del-proyecto)
+- [🔗 Enlaces Relacionados](#-enlaces-relacionados)
+
+---
+
+## 📋 Descripción del Proyecto
+
 Este proyecto es una aplicación web interactiva desarrollada como trabajo final para la materia **Métodos Numéricos (MAT-205)** de la **Universidad Autónoma "Gabriel René Moreno"**. La aplicación implementa el **Método de Brent** para encontrar raíces de funciones matemáticas, proporcionando una interfaz intuitiva con visualización gráfica y análisis detallado de iteraciones.
 
 El Método de Brent combina las técnicas de bisección, secante e interpolación cuadrática inversa para lograr una convergencia rápida y robusta en la búsqueda de raíces.
@@ -13,35 +33,44 @@ El Método de Brent combina las técnicas de bisección, secante e interpolació
 - **Validación en Tiempo Real**: Verificación de entradas y funciones matemáticas
 - **Visualización Gráfica**: Gráficos interactivos usando Chart.js
 - **Tabla de Iteraciones**: Seguimiento detallado de cada paso del algoritmo
+- **Modal Interactivo**: Análisis paso a paso con fórmulas matemáticas (KaTeX)
 - **Interfaz Responsiva**: Diseño moderno con efectos glassmorphism
 - **Validación de Entradas**: Mensajes de error claros y validación automática
+- **Suite de Pruebas**: Tests exhaustivos para validar la precisión matemática
 
 ### 🔧 Características Técnicas
-- **Convergencia Robusta**: Combina múltiples métodos numéricos
+- **Convergencia Robusta**: Combina múltiples métodos numéricos (bisección, secante, IQI)
 - **Precisión Configurable**: Tolerancias personalizables en X e Y
 - **Cifras Significativas**: Control de precisión en la presentación de resultados
 - **Manejo de Errores**: Detección de funciones constantes y intervalos inválidos
+- **Optimización de Espaciado**: Layout compacto y eficiente para mejor usabilidad
+- **TypeScript**: Tipado estático completo para mayor robustez
+- **Testing Automatizado**: Suite de pruebas con casos matemáticos validados
 
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
 - **React 19.1.1**: Framework principal para la interfaz de usuario
-- **TypeScript**: Tipado estático para mayor robustez
+- **TypeScript**: Tipado estático completo para mayor robustez
 - **Vite**: Herramienta de desarrollo rápida y moderna
 - **React Router DOM**: Navegación entre vistas
-- **Chart.js + React-Chartjs-2**: Visualización de gráficos
+- **Chart.js + React-Chartjs-2**: Visualización de gráficos interactivos
 - **Math.js**: Evaluación y compilación de expresiones matemáticas
+- **KaTeX + React-KaTeX**: Renderizado de fórmulas matemáticas
 
 ### Estilos y UI
-- **CSS Variables**: Sistema de diseño consistente
-- **Glassmorphism**: Efectos visuales modernos
-- **Soft UI**: Sombras y gradientes para profundidad
+- **CSS Variables**: Sistema de diseño consistente con paleta profesional
+- **Glassmorphism**: Efectos visuales modernos y backdrop-filter
+- **Soft UI**: Sombras y gradientes para profundidad visual
 - **Responsive Design**: Adaptable a diferentes tamaños de pantalla
+- **Optimización de Espaciado**: Layout compacto para mejor eficiencia de espacio
 
-### Desarrollo
+### Desarrollo y Testing
 - **ESLint**: Linting y calidad de código
-- **TypeScript Compiler**: Verificación de tipos
+- **TypeScript Compiler**: Verificación de tipos estricta
 - **Vite Build System**: Optimización y empaquetado
+- **TSX**: Ejecutor de TypeScript para Node.js
+- **Suite de Pruebas**: Tests automatizados con casos matemáticos validados
 
 ## 📦 Instalación y Configuración
 
@@ -80,6 +109,13 @@ npm run build
 npm run preview
 ```
 
+### Ejecutar Tests
+
+```bash
+# Ejecutar suite de pruebas del método de Brent
+npx tsx test_brent.js
+```
+
 ## 🚀 Uso de la Aplicación
 
 ### 1. Página Principal (Dashboard)
@@ -109,10 +145,11 @@ La aplicación soporta expresiones matemáticas estándar:
 - `exp(x) - 2` (raíz en x = ln(2))
 
 ### 3. Resultados
-- **Raíz encontrada**: Valor aproximado de la raíz
-- **Valor f(x) en la raíz**: Verificación de cercanía a cero
-- **Tabla de iteraciones**: Paso a paso del algoritmo
-- **Gráfico**: Visualización de la función y la raíz encontrada
+- **Raíz encontrada**: Valor aproximado de la raíz con precisión configurable
+- **Valor f(x) en la raíz**: Verificación de cercanía a cero (debe ser ≈ 0)
+- **Tabla de iteraciones**: Paso a paso del algoritmo con método usado en cada iteración
+- **Gráfico interactivo**: Visualización de la función completa y raíz marcada
+- **Modal detallado**: Análisis matemático completo de cada iteración con fórmulas
 
 ## 📁 Estructura del Proyecto
 
@@ -125,6 +162,7 @@ metodos_numericos/
 │   ├── components/        # Componentes reutilizables
 │   │   ├── FunctionGraph.tsx    # Gráfico de funciones
 │   │   ├── ImputForm.tsx        # Formulario de entrada
+│   │   ├── IterationModal.tsx   # Modal de análisis detallado
 │   │   ├── ResultsTable.tsx     # Tabla de resultados
 │   │   └── layout/             # Componentes de layout
 │   │       ├── Layout.tsx
@@ -134,16 +172,17 @@ metodos_numericos/
 │   ├── logic/             # Lógica de negocio
 │   │   └── brent.ts       # Implementación del método de Brent
 │   ├── types/             # Definiciones TypeScript
-│   │   ├── index.ts       # Tipos principales
-│   │   └── views/         # Vistas de la aplicación
-│   │       ├── BrentView.tsx
-│   │       ├── DashboardView.tsx
-│   │       ├── BrentView.css
-│   │       └── DashboardView.css
+│   │   └── index.ts       # Tipos principales
+│   ├── views/             # Vistas de la aplicación
+│   │   ├── BrentView.tsx
+│   │   ├── DashboardView.tsx
+│   │   ├── BrentView.css
+│   │   └── DashboardView.css
 │   ├── App.tsx            # Componente principal
 │   ├── App.css
 │   ├── index.css          # Estilos globales
 │   └── main.tsx           # Punto de entrada
+├── test_brent.js          # Suite de pruebas automatizadas
 ├── package.json           # Dependencias y scripts
 ├── tsconfig.json          # Configuración TypeScript
 ├── vite.config.ts         # Configuración Vite
@@ -202,11 +241,99 @@ function solveBrent(
 
 ## 📄 Licencia
 
-Este proyecto es de carácter académico y está destinado únicamente para fines educativos. Todos los derechos reservados a los autores y la institución educativa.
+Este proyecto es de carácter académico y está destinado para fines educativos. El código fuente está disponible bajo la licencia MIT para estudio, modificación y distribución no comercial.
+
+### ⚖️ Términos de Uso
+- Uso educativo autorizado
+- Atribución requerida a los autores originales
+- Modificaciones permitidas con fines académicos
+- Distribución no comercial
 
 ## 🤝 Contribución
 
-Como proyecto académico, las contribuciones externas no están previstas. Sin embargo, el código fuente está disponible para estudio y referencia.
+¡Las contribuciones son bienvenidas! Este proyecto está abierto a mejoras y extensiones por parte de la comunidad académica y desarrolladores interesados en métodos numéricos.
+
+### 🚀 Cómo Contribuir
+
+#### 1. Preparación del Entorno
+```bash
+# Clona el repositorio
+git clone <url-del-repositorio>
+cd metodos_numericos
+
+# Instala dependencias
+npm install
+
+# Ejecuta los tests para verificar que todo funciona
+npx tsx test_brent.js
+```
+
+#### 2. Desarrollo
+- Crea una rama para tu feature: `git checkout -b feature/nueva-funcionalidad`
+- Sigue las convenciones de código existentes
+- Agrega tests para nuevas funcionalidades
+- Asegúrate de que todos los tests pasen
+
+#### 3. Pull Request
+- Describe claramente los cambios realizados
+- Incluye capturas de pantalla si hay cambios visuales
+- Referencia issues relacionados si aplica
+
+### 📋 Áreas de Contribución Sugeridas
+
+#### 🔬 Mejoras Algorítmicas
+- Optimización del método de Brent
+- Implementación de otros métodos numéricos
+- Mejora de la precisión y estabilidad
+
+#### 🎨 Mejoras de UI/UX
+- Nuevos temas visuales
+- Mejor responsividad móvil
+- Accesibilidad (WCAG)
+- Animaciones y transiciones
+
+#### 🧪 Testing y Validación
+- Más casos de prueba
+- Benchmarks de performance
+- Validación cruzada con otras implementaciones
+
+#### 📚 Documentación
+- Tutoriales adicionales
+- Ejemplos de uso avanzado
+- Documentación de API
+
+### 📝 Guías de Estilo
+
+#### TypeScript
+- Usa tipos estrictos en todas las funciones
+- Documenta interfaces y tipos complejos
+- Mantén consistencia con el código existente
+
+#### CSS
+- Usa CSS variables para colores y espaciado
+- Sigue la metodología BEM para clases
+- Prioriza flexbox/grid sobre floats
+
+#### Commits
+- Usa mensajes descriptivos en inglés
+- Prefija con tipo: `feat:`, `fix:`, `docs:`, `test:`
+- Ejemplo: `feat: add cubic function convergence test`
+
+### 🐛 Reporte de Bugs
+
+Para reportar bugs, por favor incluye:
+- Descripción clara del problema
+- Pasos para reproducir
+- Comportamiento esperado vs actual
+- Capturas de pantalla si aplica
+- Información del entorno (navegador, OS, Node.js)
+
+### 📞 Contacto
+
+Para contribuciones o preguntas:
+- Abre un Issue en el repositorio
+- Contacta al equipo de desarrollo
+- Docente responsable: Ing. Luis Antonio Gianella Peredo
 
 ## 📞 Soporte
 
@@ -224,6 +351,27 @@ Para preguntas o problemas relacionados con el proyecto, contactar al docente re
 - [Documentación de Chart.js](https://www.chartjs.org/)
 - [Documentación de Math.js](https://mathjs.org/)
 
+## 🎉 Estado del Proyecto
+
+### ✅ Características Completadas
+- ✅ Implementación completa del método de Brent
+- ✅ Interfaz web moderna y responsiva
+- ✅ Visualización gráfica interactiva
+- ✅ Modal de análisis detallado con KaTeX
+- ✅ Suite de pruebas automatizadas
+- ✅ Optimización de espaciado y layout
+- ✅ Documentación completa actualizada
+- ✅ Guías de contribución abiertas
+
+### 🚀 Próximas Versiones
+- Implementación de otros métodos numéricos
+- Temas visuales adicionales
+- Exportación de resultados
+- API REST para cálculos
+- Aplicación móvil nativa
+
 ---
 
 **Desarrollado con ❤️ para la Universidad Autónoma "Gabriel René Moreno"**
+
+**🏆 Proyecto Final - Métodos Numéricos (MAT-205)**

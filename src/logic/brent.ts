@@ -2,7 +2,7 @@
 
 import type { BrentResult, BrentIteration, CompiledFunction, IterationDetails } from '../types';
 
-const MAQUINA_EPSILON = 2.220446049250313e-16;
+const MAQUINA_EPSILON = Number.EPSILON || 2.220446049250313e-16;
 
 const fNum = (num: number, figs: number) => num.toPrecision(figs);
 
@@ -18,8 +18,15 @@ export function solveBrent(
   let fa = f(a);
   let fb = f(b);
 
+  // Verificar que hay cambio de signo
   if (fa * fb >= 0) {
     console.error("La función debe tener signos opuestos en a y b.");
+    return { root: null, iterations: [] };
+  }
+
+  // Verificar que no sean funciones constantes
+  if (Math.abs(fa) < MAQUINA_EPSILON && Math.abs(fb) < MAQUINA_EPSILON) {
+    console.error("La función parece ser constante en el intervalo dado.");
     return { root: null, iterations: [] };
   }
   if (Math.abs(fa) < Math.abs(fb)) {
@@ -43,7 +50,7 @@ export function solveBrent(
     details: null
   });
 
-  while (iterCount < maxIter && Math.abs(fb) > tolY) {
+  while (iterCount < maxIter && Math.abs(fb) > tolY && Math.abs(b - a) > tolX) {
     
     // --- 1. GRABAR EL ESTADO INICIAL DE LA ITERACIÓN ---
     const iter_a = a, iter_b = b, iter_c = c;
@@ -57,6 +64,7 @@ export function solveBrent(
 
     // --- Intento de Interpolación (Plan A) ---
     if (fa !== fc && fb !== fc) {
+      // CORRECCIÓN: Fórmula correcta de Interpolación Cuadrática Inversa (IQI)
       s = (a * fb * fc) / ((fa - fb) * (fa - fc)) +
           (b * fa * fc) / ((fb - fa) * (fb - fc)) +
           (c * fa * fb) / ((fc - fa) * (fc - fb));
@@ -127,14 +135,15 @@ export function solveBrent(
 
     // --- Actualización de variables ---
     let fs = f(s);
-    e = d;
-    d = b - a;
-    c = b;
-    fc = fb;
+    c = b;        // Guardar b anterior como c
+    fc = fb;      // Guardar fb anterior como fc
+    d = b - a;    // Actualizar d con el nuevo intervalo
+    e = d;        // Inicializar e con el valor de d
 
-    if (fa * fs < 0) { b = s; fb = fs; } 
+    if (fa * fs < 0) { b = s; fb = fs; }
     else { a = s; fa = fs; }
 
+    // Asegurar que b sea el extremo con menor |f(b)|
     if (Math.abs(fa) < Math.abs(fb)) {
       [a, b] = [b, a];
       [fa, fb] = [fb, fa];
