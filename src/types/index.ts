@@ -3,9 +3,16 @@
 import type { ChartData } from 'chart.js';
 
 export type CompiledFunction = (x: number) => number;
-export interface FormInputs { /* ... (sin cambios) ... */ }
 
-// --- INTERFAZ DE DETALLES MEJORADA ---
+export interface FormInputs {
+  func: string;
+  a: number;
+  b: number;
+  tolX: number;
+  tolY: number;
+  sigFigs: number;
+}
+
 export interface IterationDetails {
   // Estado inicial
   a: number;
@@ -20,17 +27,16 @@ export interface IterationDetails {
 
   // Plan A (Interpolación)
   s_attempted: number | null;
-  methodAttempted: 'IQI' | 'Secante';
+  methodAttempted: 'IQI' | 'Secante'; // <-- La propiedad SÍ existe aquí
   
-  // ----- NUEVAS VARIABLES DE DECISIÓN -----
-  d: number; // Paso de la iteración k-1
-  e: number; // Paso de la iteración k-2
-  p: number; // Punto 3/4 del intervalo (para cond1)
-  m_seguridad: number; // Punto medio del paso anterior (para cond2)
-  tol_actual: number; // Tolerancia dinámica (para cond4, cond5)
-  // ----- FIN DE NUEVAS VARIABLES -----
+  // Variables de Decisión
+  d: number;
+  e: number;
+  p: number;
+  m_seguridad: number;
+  tol_actual: number;
 
-  // Chequeos de seguridad (los booleanos)
+  // Chequeos de seguridad
   checks: {
     cond1: boolean;
     cond2: boolean;
@@ -44,7 +50,6 @@ export interface IterationDetails {
   s_final: number;
   reason: string;
 }
-// --- FIN DE LA MEJORA ---
 
 export interface BrentIteration {
   i: number;
@@ -57,5 +62,9 @@ export interface BrentIteration {
   details: IterationDetails | null; 
 }
 
-export interface BrentResult { /* ... (sin cambios) ... */ }
+export interface BrentResult {
+  root: number | null;
+  iterations: BrentIteration[];
+}
+
 export type LineChartData = ChartData<'line'>;

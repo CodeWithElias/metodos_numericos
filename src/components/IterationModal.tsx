@@ -59,7 +59,7 @@ const FormulaBisection: React.FC<{ d: IterationDetails, s: number }> = ({ d, s }
 
 // --- NUEVO COMPONENTE: PANEL DE DECISIÓN ---
 const DecisionPanel: React.FC<{ d: IterationDetails, s: number }> = ({ d, s }) => {
-  const { checks: c, s_attempted, b, m_seguridad, e, p, tol_actual } = d;
+  const { checks: c, s_attempted, b, m_seguridad, p, tol_actual } = d;
   const s_val = s_attempted ?? 0;
 
   return (

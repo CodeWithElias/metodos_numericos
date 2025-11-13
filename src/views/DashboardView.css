@@ -39,7 +39,7 @@
   background-color: var(--color-gray-800);
   backdrop-filter: none;
   border: 1px solid var(--color-gray-700); /* Borde sutil */
-  padding: 3.5rem 4rem;
+  padding: 2.5rem 3rem;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xl); /* Sombra más fuerte */
 
@@ -69,7 +69,7 @@
 
 /* --- 5. EQUIPO (Con Animación Escalonada) --- */
 .dashboard-team {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   opacity: 1;
 }
 
@@ -85,10 +85,10 @@
 .team-list {
   list-style: none;
   padding: 0;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 0.5rem;
   font-size: 0.95rem;
   text-align: left;
 }
@@ -111,7 +111,7 @@
 
 
 .teacher-name {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-gray-400); /* Gris-azulado claro */
@@ -124,7 +124,7 @@
 
 /* --- 6. BOTÓN (CTA) --- */
 .dashboard-footer {
-  margin-top: 3rem;
+  margin-top: 2rem;
   animation: slideInUp 0.7s ease-out 0.7s backwards;
 }
 
@@ -138,7 +138,7 @@
   font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
-  padding: 1rem 2.5rem;
+  padding: 0.75rem 2rem;
   border-radius: var(--border-radius-full);
   text-decoration: none;
   box-shadow: var(--shadow-lg);
@@ -160,7 +160,7 @@
 /* --- 7. RESPONSIVIDAD --- */
 @media (max-width: 768px) {
   .dashboard-content {
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
     background-color: var(--color-gray-800); /* Mantiene el fondo oscuro */
   }
   .team-list {

@@ -8,9 +8,8 @@ import FunctionGraph from '../components/FunctionGraph';
 import IterationModal from '../components/IterationModal';
 import type { FormInputs, BrentResult, LineChartData, CompiledFunction, BrentIteration } from '../types';
 
-import './BrentView.css'; // Importa el CSS de la vista
+import './BrentView.css';
 
-// Imports de Chart.js
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -50,6 +49,7 @@ function BrentView() {
   const [sigFigs, setSigFigs] = useState<number>(8);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  
   const [selectedIter, setSelectedIter] = useState<BrentIteration | null>(null);
 
   const handleCalculate = async (inputs: FormInputs) => {
@@ -88,7 +88,6 @@ function BrentView() {
   };
 
   const generateChartData = (fn: CompiledFunction, a: number, b: number, root: number | null) => {
-    // (sin cambios)
     const points = 100;
     const rangePadding = (b - a) * 0.2;
     const min = a - rangePadding;
@@ -125,10 +124,8 @@ function BrentView() {
         <p>Calculadora de raíces de funciones</p>
       </header>
 
-      {/* --- CAMBIO: ESTRUCTURA DEL LAYOUT --- */}
       <main className="app-main">
         
-        {/* --- TARJETA 1: CONTROLES --- */}
         <section className="app-controls card">
           <h2>Parámetros de Entrada</h2>
           <InputForm onSubmit={handleCalculate} isLoading={isLoading} />
@@ -137,12 +134,10 @@ function BrentView() {
           )}
         </section>
 
-        {/* --- TARJETA 2: RESULTADOS PRINCIPALES (RESUMEN + GRÁFICA) --- */}
         <section className="app-results-main card">
           <h2>Resultados Principales</h2>
           {runData && runData.results.root !== null ? (
             <>
-              {/* El resumen va primero */}
               <ul className="results-summary">
                 <li>
                   <span>Función evaluada:</span>
@@ -162,7 +157,6 @@ function BrentView() {
                 </li>
               </ul>
               
-              {/* La raíz encontrada va después */}
               <div className="results-container">
                 <div className="root-result">
                   <span>Raíz encontrada:</span>
@@ -170,7 +164,6 @@ function BrentView() {
                 </div>
               </div>
 
-              {/* La gráfica va al final de esta tarjeta */}
               {chartData && <FunctionGraph chartData={chartData} />}
             </>
           ) : (
@@ -181,12 +174,12 @@ function BrentView() {
         </section>
 
       </main>
-      {/* --- FIN DEL CAMBIO DE ESTRUCTURA --- */}
-
+      
         {runData && (
           <section className="app-results-details card">
             <ResultsTable
               iterations={runData.results.iterations}
+              root={runData.results.root}
               sigFigs={sigFigs}
               onRowClick={handleRowClick}
             />
